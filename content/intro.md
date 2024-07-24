@@ -3,6 +3,47 @@ nav_order: 1
 title: Introduction
 ---
 
+## Table generated from published google sheet:
+
+<div id="personTable"></div>
+
+<br>
+
+## Table generated from _data/test-table.csv:
+
+{% assign people = site.data.test-table %}
+
+<table class="table table-striped">
+    <thead>
+       <tr>
+          <th scope="column">First Name</th>
+          <th scope="column">Last Name</th>
+          <th scope="column">Pet Preference</th>
+       </tr>
+    </thead>
+    <tbody>
+    {% for p in people %}
+    <tr>
+       <td>{{ p.firstname }}</td>
+       <td>{{ p.lastname }}</td>
+       <td>{{ p.pets }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<br>
+
+## Table generated from markdown:
+
+| First Name | Last Name | Pet Preference |
+| --- | --- | --- |
+| Jane | Doe | dogs |
+| John | Smith | cats |
+| Emily | Jones | birds |
+
+<br>
+
 Learn-Static Lesson Template is a Jekyll project to create a simple lesson or workshop website, with a [Bootstrap](https://getbootstrap.com/)-based theme, designed for hosting on [GitHub Pages](https://pages.github.com/).
 
 It features a sidebar navigation providing clear structure for step by step content.
@@ -11,6 +52,23 @@ The sidebar nav supports pages nested into sections to help organize your lesson
 All content is written using basic Markdown, making it simple to write, edit, and reuse lesson materials.
 
 To use Lesson Template to create your own website--> make a copy and replace the template content with your own!
+
+{% capture var %}
+<div class="row">
+<div class="col-md-6">
+<div markdown="1">
+Sentence 1  
+Sentence 2
+</div>
+</div>
+<div class="col-md-6">
+
+</div>
+</div>
+{% endcapture %}
+
+{{ var }}
+
 
 ### Why?
 
