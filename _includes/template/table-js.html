@@ -1,0 +1,46 @@
+<script src="{{ '/assets/lib/papaparse.min.js' | relative_url }}"></script>
+<script>
+    // function to generate the table
+    function generateTable(table_items) {
+        // forloop to populate rows
+        let tableRows = table_items.map(person =>
+            `<tr>
+                <td>${person.firstname}</td>
+                <td>${person.lastname}</td>
+                <td>${person.pets}</td>
+            </tr>`
+        ).join("");
+
+        // code for table
+        let peopleTable =
+            `<table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="column">First Name</th>
+                        <th scope="column">Last Name</th>
+                        <th scope="column">Pet Preference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${tableRows}
+                </tbody>
+            </table>`
+        
+        document.getElementById('personTable').innerHTML = peopleTable;
+    }
+
+    // loading message while data is parsed
+    document.getElementById('personTable').innerHTML = '<p>Loading data...</p>';
+
+    // parse the table data
+    Papa.parse("https://docs.google.com/spreadsheets/d/e/2PACX-1vSa6jmR-p-pBnNaM87oBgrz9GUR4Luvnz4hL0AUVGnCaxLVTQGKxtcUIh5NVxzH4YBiyfh6M_2qF5F1/pub?gid=0&single=true&output=csv", {
+        download: true,
+        header: true,
+        complete: (results) => {
+            generateTable(results.data);
+        },
+        error: (err) => {
+            console.log("There is an error parsing your CSV! Please check the configured URL or file. The most common issue is incorrect filename, path, or URL so that your CSV is not found.");
+        }
+    });
+</script>

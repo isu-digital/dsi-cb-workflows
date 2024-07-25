@@ -5,6 +5,7 @@ title: Introduction
 
 ## Table generated from published google sheet:
 
+{% comment %}Check out _includes/template/table-js.html to alter table code{% endcomment %}
 <div id="personTable"></div>
 
 <br>
